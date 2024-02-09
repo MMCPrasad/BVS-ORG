@@ -1,0 +1,5 @@
+bvs\org\controllers\PageController.class
+bvs\org\config\HttpSessionAuditorAware.class
+bvs\org\config\MvcWebApplicationInitializer.class
+bvs\org\config\MvcWebConfig.class
+bvs\org\config\MainWebAppInitializer.class
