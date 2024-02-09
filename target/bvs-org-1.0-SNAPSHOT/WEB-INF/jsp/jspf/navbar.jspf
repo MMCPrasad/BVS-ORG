@@ -55,7 +55,7 @@
         list-style: none;
         display: flex;
         justify-content: space-around;
-        background: #000000;
+        background: #944004;
     }
 
     .menu > ol {
@@ -64,6 +64,7 @@
         margin-right: 0px;
         padding: 0;
         justify-content: space-around;
+
     }
 
     .menu > ol > li {
@@ -228,8 +229,8 @@
             display: block;
             max-width: none;
             text-align: center;
-            margin-right: 400px;
-            margin-top: 40px;
+            margin-right: 4px;
+            margin-top: 15px;
         }
 
 
@@ -249,20 +250,13 @@
             display: inline-block;
             margin-left: -5px;
             vertical-align: top;
-            width: 120px;
+            width: 150px;
         }
 
         .menu > ol > li:hover,
         .menu > ol > li:focus,
         .menu > ol > li:focus-within {
-            &:after {
-                background: var(--accent-color);
-                border-radius: 3px;
-                top: -15px;
-                bottom: -15px;
-                left: -15px;
-                right: -15px;
-            }
+
 
             .sub-menu {
                 max-height: 750px;
@@ -290,6 +284,19 @@
 
     }
 
+    @keyframes rotateImg {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    #rotatingImg {
+        animation: rotateImg 10s linear infinite; /* Adjust the duration and timing function as needed */
+    }
+
 </style>
 </head>
 <body class="html front not-logged-in no-sidebars page-node i18n-en">
@@ -297,7 +304,7 @@
     <nav class="menu">
         <div class="img">
             <a href="/" title="Home">
-                <img src="https://bvs.org/sites/default/files/logo_0.png" style="width: 80%;margin-top: 2rem;" alt="Home" />
+                <img src="https://bvs.org/sites/default/files/logo_0.png" style="width: 80%;margin-top: 1rem;" alt="Home" />
             </a> 
         </div>
 
@@ -307,11 +314,11 @@
             <li class="menu-item">
                 <a href="#aboutus" class="dropbtn">About Us</a>
                 <ol class="sub-menu">
-                    <li class="menu-item"><a href="http://tinyurl.com/q8d82fy" target="_blank">Charitable Status (CRA)</a></li>
+                    <li class="menu-item"><a href="https://www.cra-arc.gc.ca/ebci/haip/srch/t3010form22quickview-eng.action?r=http%3A%2F%2Fwww.cra-arc.gc.ca%3A80%2Febci%2Fhaip%2Fsrch%2Fbasicsearchresult-eng.action%3Fk%3Dbuddhist%2B%2Bvihara%26amp%3Bs%3Dregistered%26amp%3Bp%3D1%26amp%3Bb%3Dtrue&fpe=2013-03-31&b=892342775RR0001&n=BUDDHIST%20VIHARA%20SOCIETY%20IN%20B%20C" target="_blank">Charitable Status (CRA)</a></li>
                     <li class="menu-item"><a href="history">History</a></li>
                     <li class="menu-item"><a href="What-We-Do">What we do</a></li>
                     <li class="menu-item"><a href="Vision-Mission">Vision & Mission</a></li>
-                    <li class="menu-item"><a href="resident-monks">Resident Monks</a></li>
+                    <li class="menu-item"><a href="Resident-Monks">Resident Monks</a></li>
                     <li class="menu-item"><a href="Board-Directors">Board of Directors</a></li>
                     <li class="menu-item"><a href="Religious-Advisors">Religious Advisors</a></li>
                     <li class="menu-item"><a href="Audit-Committee">Audit Committee</a></li>
@@ -365,4 +372,9 @@
 
 
         </ol>
+        <div class="img-damma" style="width: 5em;">
+            <a href="/" title="Home">
+                <img id="rotatingImg" src="assets/img/damma.png" style="width: 100%;margin-top: 1rem;" alt="Home" />
+            </a> 
+        </div>
     </nav>

@@ -1,17 +1,68 @@
-<%-- 
-    Document   : audit-committee
-    Created on : 9 Feb 2024, 9:53:10 am
-    Author     : Chirantha Prasad
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>BVS|Audit Committee</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+        <style>
+            .para {
+                font-family: 'Poppins', sans-serif;
+                font-size: 1.1rem;
+                padding-left: 15em;
+                padding-right: 15em;
+                text-align: justify;
+            }
+            .container {
+                background-color: #E5E5E5;
+                padding-left: 20em;
+                font-family: 'Merriweather', serif;
+                color: #1968B1;
+
+            }
+            .title {
+                font-size: 2.5rem;
+                margin: 0; /* Remove any default margins */
+            }
+        </style>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%@include file="../jspf/navbar.jspf" %>
+
+        <div class="title-bg">
+            <div class="container">
+                <div class="container_12">
+                    <div class="grid_12">
+                        <h1 class="title">Audit Committee</h1>
+                    </div>
+                </div> 
+            </div>
+
+        </div>
+
+        <div class="para">
+            <p style="color: #666666;font-size: 1.3rem;font-weight: 600;">
+                Audit Committee  (2020-2022)
+            </p>
+
+            <ul>
+                <li>Janaka Sandasoma</li>  
+                <li>Buddhika Sampath Egodawatta</li>
+                <li>Kanchana Wickramaratna</li>
+
+            </ul>
+
+
+        </div>
+
+
     </body>
 </html>
+
+

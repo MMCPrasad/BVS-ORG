@@ -50,4 +50,9 @@ public class PageController {
         return "aboutUs/audit-committee";
     }
 
+    @GetMapping("/Resident-Monks")
+    public String monks() {
+        return "aboutUs/resident-monks";
+    }
+
 }
