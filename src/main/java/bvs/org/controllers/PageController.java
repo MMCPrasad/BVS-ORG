@@ -35,4 +35,14 @@ public class PageController {
         return "aboutUs/vision";
     }
 
+    @GetMapping("/Board-Directors")
+    public String directors() {
+        return "aboutUs/board-directors";
+    }
+
+    @GetMapping("/Religious-Advisors")
+    public String advisors() {
+        return "aboutUs/religious-advisors";
+    }
+
 }

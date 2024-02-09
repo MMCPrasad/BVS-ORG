@@ -311,11 +311,11 @@
                     <li class="menu-item"><a href="history">History</a></li>
                     <li class="menu-item"><a href="What-We-Do">What we do</a></li>
                     <li class="menu-item"><a href="Vision-Mission">Vision & Mission</a></li>
-                    <li class="menu-item"><a href="/resident-monks">Resident Monks</a></li>
-                    <li class="menu-item"><a href="/board-directors">Board of Directors</a></li>
-                    <li class="menu-item"><a href="/religious-advisors">Religious Advisors</a></li>
-                    <li class="menu-item"><a href="/audit-committee">Audit Committee</a></li>
-                    <li class="menu-item"><a href="/projects" title="projects">Projects</a></li>
+                    <li class="menu-item"><a href="resident-monks">Resident Monks</a></li>
+                    <li class="menu-item"><a href="Board-Directors">Board of Directors</a></li>
+                    <li class="menu-item"><a href="Religious-Advisors">Religious Advisors</a></li>
+                    <li class="menu-item"><a href="audit-committee">Audit Committee</a></li>
+                    <li class="menu-item"><a href="projects" title="projects">Projects</a></li>
                 </ol>
             </li>
 

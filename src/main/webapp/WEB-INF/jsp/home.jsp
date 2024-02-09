@@ -1,24 +1,17 @@
-<%-- 
-    Document   : home
-    Created on : 7 Feb 2024, 5:20:23 am
-    Author     : Chirantha Prasad
---%>
-
-<%-- 
-    Document   : navbar
-    Created on : Feb 8, 2024, 5:16:00 PM
-    Author     : Nirmal Chathura
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" version="XHTML+RDFa 1.0" dir="ltr">
+    <head profile="http://www.w3.org/1999/xhtml/vocab">
+        <link rel="shortcut icon" href="https://bvs.org/sites/all/themes/bluemasters/favicon.ico" type="image/vnd.microsoft.icon" />
+        <title>BVS</title>
+
     </head>
-    <body>
-        <h1>Hello Nirmal</h1>
+    <body class="html front not-logged-in no-sidebars page-node i18n-en">
+        <%@include file="jspf/navbar.jspf" %>
+
+
     </body>
 </html>
