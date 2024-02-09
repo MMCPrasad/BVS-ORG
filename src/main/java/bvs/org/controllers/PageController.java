@@ -45,4 +45,9 @@ public class PageController {
         return "aboutUs/religious-advisors";
     }
 
+    @GetMapping("/Audit-Committee")
+    public String committee() {
+        return "aboutUs/audit-committee";
+    }
+
 }
