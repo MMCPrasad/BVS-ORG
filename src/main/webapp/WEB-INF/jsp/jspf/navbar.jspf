@@ -303,13 +303,13 @@
 
     <nav class="menu">
         <div class="img">
-            <a href="/" title="Home">
+            <a href="home" title="home">
                 <img src="https://bvs.org/sites/default/files/logo_0.png" style="width: 80%;margin-top: 1rem;" alt="Home" />
             </a> 
         </div>
 
         <ol>
-            <li class="menu-item"><a href="#home">Home</a></li>
+            <li class="menu-item"><a href="home">Home</a></li>
 
             <li class="menu-item">
                 <a href="#aboutus" class="dropbtn">About Us</a>
@@ -373,8 +373,8 @@
 
         </ol>
         <div class="img-damma" style="width: 5em;">
-            <a href="/" title="Home">
-                <img id="rotatingImg" src="assets/img/damma.png" style="width: 100%;margin-top: 1rem;" alt="Home" />
-            </a> 
+
+            <img id="rotatingImg" src="assets/img/damma.png" style="width: 100%;margin-top: 1rem;" alt="Home" />
+
         </div>
     </nav>

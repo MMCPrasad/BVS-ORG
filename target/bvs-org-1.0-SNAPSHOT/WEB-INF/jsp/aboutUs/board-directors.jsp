@@ -5,16 +5,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>BVS|Board of Directors</title>
+
+        <title>BVS | Board of Directors</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
 
         <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
         <style>
             .para {
                 font-family: 'Poppins', sans-serif;
-                font-size: 1.1rem;
+                font-size: 1rem;
                 padding-left: 15em;
                 padding-right: 15em;
                 text-align: justify;
@@ -22,12 +23,14 @@
             .container {
                 background-color: #E5E5E5;
                 padding-left: 20em;
+                padding-top :1em;
+                padding-bottom: 1em;
                 font-family: 'Merriweather', serif;
                 color: #1968B1;
 
             }
             .title {
-                font-size: 2.5rem;
+                font-size: 2rem;
                 margin: 0; /* Remove any default margins */
             }
         </style>

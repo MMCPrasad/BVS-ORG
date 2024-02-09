@@ -20,6 +20,11 @@ public class PageController {
         return "home";
     }
 
+    @GetMapping("/home")
+    public String dashboards() {
+        return "home";
+    }
+
     @GetMapping("/history")
     public String history() {
         return "aboutUs/history";
