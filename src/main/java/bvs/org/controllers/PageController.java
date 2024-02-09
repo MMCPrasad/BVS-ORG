@@ -12,10 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 //import bvs.org.service.PageService;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- *
- * @author asus
- */
 @Controller
 public class PageController {
 
@@ -26,7 +22,17 @@ public class PageController {
 
     @GetMapping("/history")
     public String history() {
-        return "history";
+        return "aboutUs/history";
+    }
+
+    @GetMapping("/What-We-Do")
+    public String whatWeDo() {
+        return "aboutUs/whatWeDo";
+    }
+
+    @GetMapping("/Vision-Mission")
+    public String vision() {
+        return "aboutUs/vision";
     }
 
 }
