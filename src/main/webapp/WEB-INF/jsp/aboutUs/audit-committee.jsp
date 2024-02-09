@@ -7,6 +7,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <title>BVS | Audit Committee</title>
+        <link rel = "stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
         <link rel="shortcut icon" href="https://bvs.org/sites/all/themes/bluemasters/favicon.ico" type="image/vnd.microsoft.icon" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,12 +22,14 @@
                 padding-left: 15em;
                 padding-right: 15em;
                 text-align: justify;
+                padding-top: 2em;
+                padding-bottom: 2em;
             }
-            .container {
+            .container-s {
                 background-color: #E5E5E5;
                 padding-left: 20em;
-                padding-top :1em;
-                padding-bottom: 1em;
+                padding-top :0.1em;
+                padding-bottom: 0.1em;
                 font-family: 'Merriweather', serif;
                 color: #1968B1;
 
@@ -40,7 +44,7 @@
         <%@include file="../jspf/navbar.jspf" %>
 
         <div class="title-bg">
-            <div class="container">
+            <div class="container-s">
                 <div class="container_12">
                     <div class="grid_12">
                         <h1 class="title">Audit Committee</h1>
@@ -50,7 +54,7 @@
 
         </div>
 
-        <div class="para">
+        <div class="para" >
             <p style="color: #666666;font-size: 1.3rem;font-weight: 600;">
                 Audit Committee  (2020-2022)
             </p>
@@ -65,7 +69,17 @@
 
         </div>
 
-
+        <%@include file="../jspf/footer.jspf" %>
+        <%@include file="../jspf/scripts.jspf" %>
+        <script type="text/javascript" src="files/js/slimselect.js"></script>
+        <script type="text/javascript" src="files/js/datatables.min.js"></script>
+        <script type="text/javascript" src="files/js/sweetalert2.js"></script>
+        <script type="text/javascript" src="files/js/func.js"></script>
+        <script type="text/javascript" src="files/js/autoNumeric.js"></script>
+        <script type="text/javascript" src="files/js/dataTables.responsive.min.js"></script>
+        <script type="text/javascript" src="files/js/jquery.highlight.js"></script>
+        <script type="text/javascript" src="files/js/dataTables.searchHighlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     </body>
 </html>
 

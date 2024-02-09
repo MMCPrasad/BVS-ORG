@@ -10,6 +10,7 @@
         <link rel="shortcut icon" href="https://bvs.org/sites/all/themes/bluemasters/favicon.ico"
               type="image/vnd.microsoft.icon" />
         <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700,100' rel='stylesheet' type='text/css'>
+        <link rel = "stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     </head>
     <body>
@@ -21,16 +22,9 @@
                 text-decoration: none;
 
             }
-
-            body, h1, h2, h3, p {
-                margin: 20px;
-                padding: 0;
-            }
-
             body {
                 font-family: 'Roboto Slab', serif;
                 font-size: 16px;
-                line-height: 1.5;
                 color: #333;
             }
 
@@ -71,12 +65,12 @@
                 padding: 20px;
                 margin-bottom: 20px;
                 border-radius: 8px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
                 transition: box-shadow 0.3s ease;
             }
 
             .home-block-area:hover {
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
             }
 
             .content h2 {
@@ -89,8 +83,8 @@
 
 
             #banner {
-                background-color: #f0f0f0;
-                padding: 20px;
+                margin-top:30px;
+
             }
 
             .slider-item {
@@ -105,15 +99,32 @@
                     margin-right: 0;
                 }
             }
+            .slideshow-pan {
+                position: relative;
+                /* Other styles for your slideshow container */
+            }
+
+            .background-image {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('assets/img/lotus.png'); /* Replace 'your-photo.jpg' with the path to your image */
+                background-size: cover; /* Ensures the image covers the entire background */
+                background-position: center; /* Centers the image */
+                opacity: 0.5;
+                z-index: -1;/* Adjust the opacity value as needed (0.0 to 1.0) */
+            }
+
+
 
         </style>
 
 
 
-
-
-
         <div class="slideshow-pan">
+            <div class="background-image"></div>
             <div id="banner">
                 <!--#slideshow-->
 
@@ -222,30 +233,26 @@
 
                                                 <div class="content">
 
-                                                    <body
-                                                        onLoad="MM_preloadImages('sites/all/themes/bluemasters/images/event-icon_h.png', '/sites/all/themes/bluemasters/images/suport-icon_h.png')">
-                                                        <div class="home-links">
-                                                            <div class="dana-link content">
-                                                                <a class="image"  href="/dāna-calendar" onMouseOut="MM_swapImgRestore()" src="assets/img/calendar.png" name="Image3" width="220" height="170" border="0"></a>
-                                                                <h3><a href="/dāna-calendar">Dana Calendar</a></h3>
-                                                                <p>All dana sponsors are kindly reminded to confirm your
-                                                                    dana arrangement two days (2) prior to the dana date by
-                                                                    calling the temple at 604.888.1162.</p>
-                                                            </div>
-                                                            <div class="suport-link content">
-                                                                <a class="image" href="/support-us"
-                                                                   onMouseOut="MM_swapImgRestore()"
-                                                                   onMouseOver="MM_swapImage('Image2', '', '/sites/all/themes/bluemasters/images/suport-icon_h.png', 1)"><img
-                                                                        src="assets/img/support.png"
-                                                                        name="Image2" width="170" height="170"
-                                                                        border="0"></a>
-                                                                <h3><a href="/support-us">Support Us</a></h3>
-                                                                <p>We request that anyone who requires the services of our
-                                                                    society to become a member.In order to become a member
-                                                                    please <a href="http://www.bvs.org/membership"
-                                                                              target="_blank">register</a></p>
-                                                            </div>
+
+
+                                                    <div class="home-links">
+                                                        <div class="dana-link content">
+                                                            <a class="image"  href="/dāna-calendar" > <img src="assets/img/calendar.png" name="Image3" width="220" height="170" border="0"></a>
+                                                            <h3><a href="/dāna-calendar">Dana Calendar</a></h3>
+                                                            <p>All dana sponsors are kindly reminded to confirm your
+                                                                dana arrangement two days (2) prior to the dana date by
+                                                                calling the temple at 604.888.1162.</p>
                                                         </div>
+                                                        <div class="suport-link content">
+                                                            <a class="image" href="/support-us">
+                                                                <img src="assets/img/support.png" name="Image2" width="170" height="170" border="0"></a>
+                                                            <h3><a href="/support-us">Support Us</a></h3>
+                                                            <p>We request that anyone who requires the services of our
+                                                                society to become a member.In order to become a member
+                                                                please <a href="http://www.bvs.org/membership"
+                                                                          target="_blank">register</a></p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
