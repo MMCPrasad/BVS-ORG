@@ -60,4 +60,14 @@ public class PageController {
         return "aboutUs/resident-monks";
     }
 
+    @GetMapping("/Dhamma-Videos")
+    public String dhammma() {
+        return "dhamma_resourses/dhamma_videos";
+    }
+
+    @GetMapping("/Admin-Videos")
+    public String dhammmaAdd() {
+        return "admin/add_dhamma_video";
+    }
+
 }

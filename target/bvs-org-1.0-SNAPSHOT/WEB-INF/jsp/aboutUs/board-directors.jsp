@@ -37,6 +37,18 @@
                 font-size: 2rem;
                 margin: 0; /* Remove any default margins */
             }
+            .background-image {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('assets/img/lotus.png'); /* Replace 'your-photo.jpg' with the path to your image */
+                background-size: cover; /* Ensures the image covers the entire background */
+                background-position: center; /* Centers the image */
+                opacity: 0.2;
+                z-index: -1;/* Adjust the opacity value as needed (0.0 to 1.0) */
+            }
         </style>
     </head>
     <body>
@@ -52,7 +64,7 @@
             </div>
 
         </div>
-
+        <div class="background-image"></div>
         <div class="para">
             <p style="color: #666666;font-size: 1.3rem;font-weight: 600;">
                 Board of Directors  (2020-2022)

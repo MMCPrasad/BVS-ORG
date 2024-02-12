@@ -297,6 +297,7 @@
         animation: rotateImg 10s linear infinite; /* Adjust the duration and timing function as needed */
     }
 
+
 </style>
 </head>
 <body class="html front not-logged-in no-sidebars page-node i18n-en">
@@ -326,7 +327,7 @@
                 </ol>
             </li>
 
-            <li class="menu-item"><a href="#dhamma">Dhamma Resources</a></li>
+            <li class="menu-item"><a href="Dhamma-Videos">Dhamma Resources</a></li>
 
             <li class="menu-item">
                 <a href="#dhammaschool" class="dropbtn">Dhamma School</a>
