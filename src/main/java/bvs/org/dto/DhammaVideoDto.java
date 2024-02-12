@@ -22,10 +22,9 @@ import lombok.Setter;
 public class DhammaVideoDto {
 
     public Integer id;
-    public String course;
+    public String content;
     public String name;
-    public String description;
-    public String path;
+    public String link;
     public String status;
     public String ent_by;
     public String ent_on;

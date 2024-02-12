@@ -32,7 +32,7 @@ public class DhammaVideo {
 
     @Id
     private Integer id;
-    private Integer dhamma_content;
+    private Integer content;
     private String name;
     private String link;
     @CreatedDate
