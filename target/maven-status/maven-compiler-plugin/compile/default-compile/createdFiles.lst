@@ -1,4 +1,5 @@
 bvs\org\controllers\PageController.class
+bvs\org\controllers\DhammaVideoController.class
 bvs\org\config\MvcWebApplicationInitializer.class
 bvs\org\datatable\DataTableRequest.class
 bvs\org\config\DbConfig.class
@@ -15,5 +16,7 @@ bvs\org\model\DhammaVideo.class
 bvs\org\datatable\DataTableRequest$Order.class
 bvs\org\datatable\DataTableRequest$Search.class
 bvs\org\repo\DhammaContentRepo.class
+bvs\org\service\DhammaVideoService.class
 bvs\org\datatable\DataTableRepo.class
 bvs\org\config\MainWebAppInitializer.class
+bvs\org\dto\DhammaAllDto.class

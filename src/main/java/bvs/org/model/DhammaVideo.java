@@ -27,7 +27,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Setter
 @Getter
 @ToString
-@Table("attatchments")
+@Table("dhamma_videos")
 public class DhammaVideo {
 
     @Id

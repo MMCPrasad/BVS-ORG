@@ -18,6 +18,7 @@ public interface DhammaVideoRepo extends CrudRepository<DhammaVideo, Integer> {
 
     Iterable<DhammaVideo> findByStatus(String status);
 
-//    Iterable<DhammaVideo> findByDhammaConetnt(Integer id);
+    Iterable<DhammaVideo> findByContent(Integer id);
+
     List<DhammaVideo> findByContentAndStatus(Integer id, String status);
 }

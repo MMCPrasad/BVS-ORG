@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import bvs.org.datatable.DataTableRepo;
 import bvs.org.datatable.DataTableRequest;
 import bvs.org.datatable.DataTablesResponse;
+import bvs.org.dto.DhammaAllDto;
 import bvs.org.dto.DhammaVideoDto;
 import bvs.org.dto.DhammaContentDto;
 import bvs.org.model.DhammaVideo;
@@ -80,29 +81,29 @@ public class DhammaVideoService {
         return systems;
     }
 
-    public Iterable<DhammaVideo> getAllActiveAttatchments() {
-        return videoRepo.findByStatus("active");
+    public Iterable<DhammaContent> getAllActiveAttatchments() {
+        return conRepo.findByStatus("active");
+    }
+
+    public DhammaAllDto getAttachment(Integer id) throws Exception {
+        DhammaContent con = conRepo.findById(id).get();
+        Iterable<DhammaVideo> dhammaVideo = videoRepo.findByContent(id);
+
+        DhammaAllDto dto = new DhammaAllDto();
+        dto.setVideos(dhammaVideo);
+        dto.setContent(con.getHeading());
+        return dto;
     }
 
     public List<DhammaVideo> getActiveAttachmentsByDhammaContentId(Integer id) throws Exception {
         return videoRepo.findByContentAndStatus(id, "active");
     }
 
-    public DhammaContent saveAttachment(String heading, String desclist, String link) throws Exception {
+    public DhammaContent saveAttachment(String heading, String desclist) throws Exception {
         DhammaContent system = new DhammaContent();
         system.setHeading(heading);
         system.setStatus("active");
         system = conRepo.save(system);
-
-        String directoryPath = "BVS-ORG\\Dhamma-Video\\Attachments";
-        File directory = new File(directoryPath);
-        if (!directory.exists()) {
-            if (directory.mkdirs()) {
-                System.out.println("Directory created successfully");
-            } else {
-                throw new Exception("Failed to create directory");
-            }
-        }
 
         JsonNode fileList = mapper.readTree(desclist);
         for (int i = 0; i < fileList.size(); i++) {
@@ -110,7 +111,8 @@ public class DhammaVideoService {
 
             DhammaVideo attachment = new DhammaVideo();
             attachment.setContent(system.getId());
-            attachment.setLink(link);
+            attachment.setName(fileItem.get("name").asText());
+            attachment.setLink(fileItem.get("link").asText());
             attachment.setStatus("active");
             attachment = videoRepo.save(attachment);
             System.out.println("attachment - " + attachment.getId());

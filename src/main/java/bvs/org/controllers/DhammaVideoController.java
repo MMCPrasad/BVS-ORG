@@ -34,57 +34,48 @@ import bvs.org.model.DhammaVideo;
 import bvs.org.service.DhammaVideoService;
 
 @RestController
-@RequestMapping("/course")
+@RequestMapping("/dhamma")
 public class DhammaVideoController {
 
     @Autowired
     DhammaVideoService service;
 
-    @PostMapping("/dhamma-videos")
+    @PostMapping("/dhamma-content")
     public DataTablesResponse<DhammaContentDto> getDhammaContents(@RequestBody DataTableRequest param) throws Exception {
         return service.getDhammaContents(param);
     }
 
-    @GetMapping("/video-details/{id}")
+    @GetMapping("/content-details/{id}")
     public ResponseEntity<CommonResponse> getDhammaContent(@PathVariable Integer id) throws Exception {
         CommonResponse response = new CommonResponse("Success!", service.getDhammaContent(id), 200);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping("/deactivate-video")
+    @PostMapping("/deactivate-content")
     public ResponseEntity<CommonResponse> deactivateDhammaContent(@RequestParam Integer id) throws Exception {
         service.deactivateDhammaContent(id);
         CommonResponse response = new CommonResponse("Success!", 200);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping("/reactivate-video")
+    @PostMapping("/reactivate-content")
     public ResponseEntity<CommonResponse> reactivateDhammaContent(@RequestParam Integer id) throws Exception {
         service.reactivateDhammaContent(id);
         CommonResponse response = new CommonResponse("Success!", 200);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    //Attatchment Controller   
-//    @PostMapping("/dhamma-attatchment")
-//    public DataTablesResponse<DhammaVideoDto> getAttatchemnts(@RequestBody DataTableRequest param) throws Exception {
-//        return service.getAttatchemnts(param);
-//    }
-//    @GetMapping("/{id}")
-//    public ResponseEntity<CommonResponse> getAttatchments(@PathVariable Integer id) throws Exception {
-//        CommonResponse response = new CommonResponse("Success!", service.getAttatchments(id), 200);
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
-    @GetMapping("/attach-videos")
-    public Iterable<DhammaVideo> getAllActiveAttatchments() {
+    @GetMapping("/attach-content")
+    public Iterable<DhammaContent> getAllActiveAttatchments() {
         return service.getAllActiveAttatchments();
     }
 
-//    @GetMapping("/attatchment-details/{id}")
-//    public ResponseEntity<CommonResponse> Attatchments(@PathVariable Integer id) throws Exception {
-//        CommonResponse response = new CommonResponse("Success!", service.getAttatchmentses(id), 200);
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<CommonResponse> getAttachment(@PathVariable Integer id) throws Exception {
+        CommonResponse response = new CommonResponse("Success!", service.getAttachment(id), 200);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @GetMapping("/attachment-details/{id}")
     public ResponseEntity<Map<String, Object>> getAttachmentDetails(@PathVariable Integer id) {
         try {
@@ -117,8 +108,8 @@ public class DhammaVideoController {
     public DhammaContent uploadAttachment(MultipartHttpServletRequest req) throws Exception {
         String heading = req.getParameter("heading");
         String desclist = req.getParameter("desclist");
-        String link = req.getParameter("link");
-        return service.saveAttachment(heading, desclist, link);
+//        String link = req.getParameter("link");
+        return service.saveAttachment(heading, desclist);
     }
 
 //    @PostMapping("/update-attachment")

@@ -9,7 +9,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
-        <link rel = "stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
         <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
         <style>
@@ -24,7 +24,7 @@
             }
             .container-s {
                 background-color: #E5E5E5;
-                padding-left: 20em;
+                padding-left: 10em;
                 padding-top :0.1em;
                 padding-bottom: 0.1em;
                 font-family: 'Merriweather', serif;
@@ -90,18 +90,9 @@
         </style>
     </head>
     <body>
+        <%@include file="../jspf/header.jspf" %>
 
 
-        <div class="title-bg">
-            <div class="container-s">
-                <div class="container_12">
-                    <div class="grid_12">
-                        <h1 class="title">Dhamma Videos</h1>
-                    </div>
-                </div> 
-            </div>
-
-        </div>
 
         <div class="tab-pane fade show active profile-overview" id="profile-overview">
 
@@ -109,12 +100,18 @@
                 <div class="page-body">
 
                     <div class="row" id="tableSection">
-
-                        <div class="card" >
-                            <div class="card-header">
-                                <h4>Units</h4>
-
+                        <div class="title-bg">
+                            <div class="container-s">
+                                <div class="container_12">
+                                    <div class="grid_12">
+                                        <h1 class="title">Dhamma Videos - Admin</h1>
+                                    </div>
+                                </div> 
                             </div>
+
+                        </div>
+                        <div class="card" >
+
                             <div class="card-block p-b-0">
                                 <div class="table-responsive">
                                     <table class="table table-hover table-bordered m-b-0" id="tbll">
@@ -139,7 +136,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="text-right">
-                                    <button id="addUnitBtn" class="btn btn-sm waves-effect waves-light btn-danger"><i class="icon feather icon-plus"></i>Add Unit</button>
+                                    <button id="addContentBtn" class="btn btn-sm waves-effect waves-light btn-danger"><i class="icon feather icon-plus"></i>Add Content</button>
                                 </div>
                             </div>
                         </div>
@@ -157,16 +154,16 @@
                                 </div>
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group"style="width: 75rem">
-                                        <label for="heading">Unit Name<span class="text-danger">*</span></label>
-                                        <input id="unit" type="text" name="unit" class="form-control"  required autocomplete="off">
+                                        <label for="heading">Please Add Your Content Heading Here<span class="text-danger">*</span></label>
+                                        <input id="heading" type="text" name="heading" class="form-control"  required autocomplete="off">
                                     </div>
                                 </div>
                                 <table class="table table-hover table-bordered m-b-0" id="tbladdAtt">
 
                                     <thead>
                                         <tr>
-                                            <th>File Name</th>
-                                            <th>file</th>
+                                            <th>Dhamma Content Name</th>
+                                            <th>Dhamma Content Link</th>
                                             <th style="width:1px;">Action</th>
                                         </tr>
                                     </thead>
@@ -214,7 +211,76 @@
         <script type="text/javascript" src="files/js/jquery.highlight.js"></script>
         <script type="text/javascript" src="files/js/dataTables.searchHighlight.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+        <script>
+            // Function to handle the "Add Attachment" button click
+            document.getElementById('addBtn').addEventListener('click', function () {
+                // Get the table body
+                var tableBody = document.querySelector('#tbladdAtt tbody');
 
+                // Create a new row
+                var newRow = tableBody.insertRow();
+
+                // Create cells in the new row
+                var fileNameCell = newRow.insertCell(0);
+                var fileCell = newRow.insertCell(1);
+                var actionCell = newRow.insertCell(2);
+
+                // Create input for "File Name" in cell 1
+                var fileNameInput = document.createElement('input');
+                fileNameInput.type = 'text';
+                fileNameInput.name = 'fileName';
+                fileNameInput.classList.add('form-control');
+                fileNameInput.required = true;
+                fileNameInput.autocomplete = 'off';
+
+                // Create input for "File Description" in cell 2
+                var fileDescInput = document.createElement('input');
+                fileDescInput.type = 'text';
+                fileDescInput.name = 'fileLink';
+                fileDescInput.classList.add('form-control');
+                fileDescInput.required = true;
+                fileDescInput.autocomplete = 'off';
+
+                // Append input elements to respective cells
+                fileNameCell.appendChild(fileNameInput);
+                fileCell.appendChild(fileDescInput);
+
+                // Create a delete button in the action cell
+                var deleteButton = document.createElement('button');
+                deleteButton.classList.add('btn', 'btn-sm', 'btn-danger');
+                deleteButton.textContent = 'Delete';
+
+                // Add a click event listener to the delete button
+                deleteButton.addEventListener('click', function () {
+                    // Remove the row when the delete button is clicked
+                    tableBody.removeChild(newRow);
+                });
+
+                // Append the delete button to the action cell
+                actionCell.appendChild(deleteButton);
+
+                // Call the addAttachmentRow function with the input values
+                addAttachmentRow(fileNameInput.value, fileDescInput.value);
+            });
+
+            function clearForms() {
+                // Clear Unit Name input
+                document.getElementById('heading').value = '';
+
+                // Clear table rows
+                var tableBody = document.querySelector('#tbladdAtt tbody');
+                tableBody.innerHTML = '';
+            }
+            $(document).ready(function () {
+                // Add click event handler to both close buttons
+                $('#closeButton2').click(function () {
+                    $('#formSection').hide();
+                    $('#tableSection').fadeIn();
+                    $('#navTab').fadeIn();
+
+                });
+            });
+        </script>
         <script>
 
 
@@ -231,7 +297,7 @@
                 "searchHighlight": true,
                 "searchDelay": 350,
                 "ajax": {
-                    "url": "news/newss",
+                    "url": "dhamma/dhamma-content",
                     "contentType": "application/json",
                     "type": "POST",
                     "data": function (d) {
@@ -358,7 +424,7 @@
                     }
                 });
             });
-            $('#addNewsBtn').click(function () {
+            $('#addContentBtn').click(function () {
                 $('#saveBtn').data('mode', 'save');
                 $('#saveBtn').html('<i class="icon feather icon-save"></i>Save');
                 clearForm();
@@ -386,59 +452,113 @@
             $(document).on('click', '.editrec', function () {
                 loadDiv($('#tableSection'));
                 let id = $(this).parents('tr').data('id');
-                fetch('news/details/' + id)
+
+                // Fetch heading and attachment details
+                fetch('dhamma/content-details/' + id)
                         .then(resp => resp.json())
                         .then((resp) => {
                             let data = resp.data;
-
                             $('#heading').val(data.heading);
-                            $('#para').val(data.para);
 
-                            $('#saveBtn').data('mode', 'update'); // Set the mode to 'update'
-                            $('#saveBtn').data('id', id);
-                            $('#saveBtn').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
-                            $('#formSection').fadeIn();
-                            $('#tableSection').hide();
-                            finishLoadDiv($('#tableSection'));
+                            // Fetch attachment details
+                            fetch('dhamma/attachment-details/' + id)
+                                    .then(attResp => attResp.json())
+                                    .then((attResp) => {
+                                        let attachments = attResp.data;
+
+                                        // Clear existing rows in the attachment table
+                                        $('#tbladdAtt tbody').empty();
+
+                                        // Populate the attachment table with fetched data
+                                        attachments.forEach((attachment) => {
+                                            // Get the table body
+                                            var tableBody = document.querySelector('#tbladdAtt tbody');
+
+                                            // Create a new row
+                                            var newRow = tableBody.insertRow();
+
+                                            // Create cells in the new row
+                                            var fileNameCell = newRow.insertCell(0);
+                                            var fileCell = newRow.insertCell(1);
+                                            var actionCell = newRow.insertCell(2);
+
+                                            // Set the text content of the cells with the fetched values
+                                            fileNameCell.textContent = attachment.name;
+
+                                            var fileLink = document.createElement('a');
+                                            fileLink.href = attachment.link;  // Set the link to the file using the path from attachment.att_path
+                                            fileLink.target = '_blank';  // Open the link in a new tab
+                                            fileLink.textContent = 'View';
+                                            fileCell.appendChild(fileLink);
+
+                                            // Create a delete button in the action cell
+                                            var deleteButton = document.createElement('button');
+                                            deleteButton.classList.add('btn', 'btn-sm', 'btn-danger');
+                                            deleteButton.textContent = 'Delete';
+
+                                            // Add a click event listener to the delete button
+                                            deleteButton.addEventListener('click', function () {
+                                                // Remove the row when the delete button is clicked
+                                                tableBody.removeChild(newRow);
+                                            });
+
+                                            // Append the delete button to the action cell
+                                            actionCell.appendChild(deleteButton);
+                                        });
+
+                                        // Show the form section
+                                        $('#saveBtn').data('mode', 'update');
+                                        $('#saveBtn').data('id', id);
+                                        $('#saveBtn').html('<i class="icon feather icon-save"></i>Update');
+                                        $('#formSection').fadeIn();
+                                        $('#tableSection').hide();
+                                        finishLoadDiv($('#tableSection'));
+                                    });
                         });
             });
 
 
 
-            document.getElementById('saveBtn').addEventListener('click', function () {
-                if ($('#heading').val().trim() === '') {
-                    Swal.fire("Empty Heading!", "Please Enter a Valid Heading!", "warning");
-                    return;
-                }
-                if ($('#para').val().trim() === '') {
-                    Swal.fire("Empty Paragraph!", "Please Enter a Valid Paragraph!", "warning");
-                    return;
-                }
-                let mode = $('#saveBtn').data('mode'); // Get the mode (save or update) from the button's data
 
+            document.getElementById('saveBtn').addEventListener('click', function () {
+                let mode = $('#saveBtn').data('mode');
                 if (mode === 'save') {
-                    // Handle the 'save' action
-                    let fd = new FormData();
-                    let file = document.getElementById('other_images').files;
                     let heading = document.getElementById('heading').value;
-                    fd.append('heading', heading);
-                    let para = document.getElementById('para').value;
-                    fd.append('para', para);
-                    for (var i = 0; i < file.length; i++) {
-                        fd.append('file', file[i]);
-                    }
-                    fetch('news/save', {
+
+                    let tableRows = document.querySelectorAll('#tbladdAtt tbody tr');
+                    let attachmentData = [];
+                    let formData = new FormData();
+
+                    let i = 1;
+                    tableRows.forEach((row, index) => {
+                        let fileName = row.querySelector('input[name="fileName"]').value;
+                        let fileLink = row.querySelector('input[name="fileLink"]').value;
+
+                        attachmentData.push({
+                            name: fileName,
+                            link: fileLink
+                        });
+                    });
+                    let desclist = JSON.stringify(attachmentData);
+                    formData.append("desclist", desclist);
+                    formData.append('heading', heading);
+
+
+
+                    fetch('dhamma/save-attachment', {
                         method: 'POST',
-                        body: fd
+                        body: formData
                     }).then(response => {
                         if (!response.ok) {
                             throw new Error(response.statusText);
                         } else {
-                            Swal.fire('Successful!', 'News has been successfully saved', 'success');
-                            clearForm();
+                            Swal.fire('Successful!', 'Content has been successfully saved', 'success');
+                            clearForms();
                             $('#formSection').hide();
                             $('#tableSection').fadeIn();
+                            $('#navTab').fadeIn();
                             dtable.ajax.reload();
+                            clearForms();
                         }
                         return response.json();
                     });
