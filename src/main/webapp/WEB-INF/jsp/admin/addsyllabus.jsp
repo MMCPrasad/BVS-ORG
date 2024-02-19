@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>BVS | Dhamma Videos</title>
+        <title>BVS | Dhamma Syllabus</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
@@ -92,11 +92,9 @@
     <body>
         <%@include file="../jspf/header.jspf" %>
 
-
-
         <div class="tab-pane fade show active profile-overview" id="profile-overview">
 
-            <div class="page-wrapper" id="units">
+            <div class="page-wrapper">
                 <div class="page-body">
 
                     <div class="row" id="tableSection">
@@ -104,7 +102,7 @@
                             <div class="container-s">
                                 <div class="container_12">
                                     <div class="grid_12">
-                                        <h1 class="title">Dhamma Videos - Admin</h1>
+                                        <h1 class="title">Dhamma School Syllabus - Admin</h1>
                                     </div>
                                 </div> 
                             </div>
@@ -119,7 +117,7 @@
                                             <tr>
 
                                                 <th>Id</th>
-                                                <th>Video Heading </th>
+                                                <th>Grade</th>
                                                 <th>Entered On</th>
                                                 <th>Entered By</th>
                                                 <th>Mod On</th>
@@ -136,7 +134,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="text-right">
-                                    <button id="addContentBtn" class="btn btn-sm waves-effect waves-light btn-danger"><i class="icon feather icon-plus"></i>Add Content</button>
+                                    <button id="addSyllabusBtn" class="btn btn-sm waves-effect waves-light btn-danger"><i class="icon feather icon-plus"></i>Add Syllabus</button>
                                 </div>
                             </div>
                         </div>
@@ -148,49 +146,34 @@
                                 <div class="card-header">
                                     <div class="card-header-right">
                                         <ul class="list-unstyled card-option">
-                                            <button type="button" class="close" id="closeButton2" data-dismiss="modal">&times;</button>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </ul>
                                     </div>
                                 </div>
+
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group"style="width: 75rem">
-                                        <label for="heading">Please Add Your Content Heading Here<span class="text-danger">*</span></label>
-                                        <input id="heading" type="text" name="heading" class="form-control"  required autocomplete="off">
+                                        <label for="grade">Please Enter Grade Here<span class="text-danger">*</span></label>
+                                        <input id="grade" type="text" name="grade" class="form-control"  required autocomplete="off">
                                     </div>
                                 </div>
-                                <table class="table table-hover table-bordered m-b-0" id="tbladdAtt">
 
-                                    <thead>
-                                        <tr>
-                                            <th>Dhamma Content Name</th>
-                                            <th>Dhamma Content Link</th>
-                                            <th style="width:1px;">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    </tbody>
-
-                                </table>
-
-                                <div class="row justify-content-end" style="padding-top: 2em;">
-                                    <div class="col-lg-6 col-12">
-                                        <div class="text-right">
-                                            <button id="addBtn" class="btn btn-sm waves-effect waves-light btn-danger">
-                                                <i class="icon feather icon-plus"></i>Add Attachment
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
 
 
 
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group" style="width: 75rem">
-
+                                        <label for="file">Upload Your File Here<span class="text-danger">*</span></label>
+                                        <input id="file" type="file" >
                                         <div class="card-footer d-flex justify-content-end">
                                             <button id="saveBtn" class="btn btn-sm waves-effect waves-light btn-primary"><i class="icon feather icon-save"></i>Save</button>
                                         </div>
+                                    </div>
+
+
+
+                                    <div class="col-lg-6 col-12 ">
+
                                     </div> 
                                 </div>
                             </div>
@@ -199,6 +182,8 @@
 
             </div>
         </div>
+
+
 
 
         <%@include file="../jspf/scripts.jspf" %>
@@ -212,79 +197,6 @@
         <script type="text/javascript" src="files/js/dataTables.searchHighlight.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
         <script>
-            // Function to handle the "Add Attachment" button click
-            document.getElementById('addBtn').addEventListener('click', function () {
-                // Get the table body
-                var tableBody = document.querySelector('#tbladdAtt tbody');
-
-                // Create a new row
-                var newRow = tableBody.insertRow();
-
-                // Create cells in the new row
-                var fileNameCell = newRow.insertCell(0);
-                var fileCell = newRow.insertCell(1);
-                var actionCell = newRow.insertCell(2);
-
-                // Create input for "File Name" in cell 1
-                var fileNameInput = document.createElement('input');
-                fileNameInput.type = 'text';
-                fileNameInput.name = 'fileName';
-                fileNameInput.classList.add('form-control');
-                fileNameInput.required = true;
-                fileNameInput.autocomplete = 'off';
-
-                // Create input for "File Description" in cell 2
-                var fileDescInput = document.createElement('input');
-                fileDescInput.type = 'text';
-                fileDescInput.name = 'fileLink';
-                fileDescInput.classList.add('form-control');
-                fileDescInput.required = true;
-                fileDescInput.autocomplete = 'off';
-
-                // Append input elements to respective cells
-                fileNameCell.appendChild(fileNameInput);
-                fileCell.appendChild(fileDescInput);
-
-                // Create a delete button in the action cell
-                var deleteButton = document.createElement('button');
-                deleteButton.classList.add('btn', 'btn-sm', 'btn-danger');
-                deleteButton.textContent = 'Delete';
-                deleteButton.name = 'dele';
-
-                // Add a click event listener to the delete button
-                deleteButton.addEventListener('click', function () {
-                    // Remove the row when the delete button is clicked
-                    tableBody.removeChild(newRow);
-                });
-
-                // Append the delete button to the action cell
-                actionCell.appendChild(deleteButton);
-
-                // Call the addAttachmentRow function with the input values
-                addAttachmentRow(fileNameInput.value, fileDescInput.value);
-            });
-
-            function clearForms() {
-                // Clear Unit Name input
-                document.getElementById('heading').value = '';
-
-                // Clear table rows
-                var tableBody = document.querySelector('#tbladdAtt tbody');
-                tableBody.innerHTML = '';
-            }
-            $(document).ready(function () {
-                // Add click event handler to both close buttons
-                $('#closeButton2').click(function () {
-                    $('#formSection').hide();
-                    $('#tableSection').fadeIn();
-                    $('#navTab').fadeIn();
-                    clearForms();
-
-                });
-            });
-        </script>
-        <script>
-
 
 
             $.fn.dataTable.ext.errMode = 'none';
@@ -299,7 +211,7 @@
                 "searchHighlight": true,
                 "searchDelay": 350,
                 "ajax": {
-                    "url": "dhamma/dhamma-content",
+                    "url": "syllabus/syllabuss",
                     "contentType": "application/json",
                     "type": "POST",
                     "data": function (d) {
@@ -312,7 +224,7 @@
                 },
                 "columns": [
                     {"data": "id", className: "text-right", "visible": false},
-                    {"data": "heading"},
+                    {"data": "grade"},
                     {"data": "ent_on"},
                     {"data": "ent_by"},
                     {"data": "mod_on"},
@@ -344,11 +256,13 @@
                 }
             }
 
+
+
             $(document).on('click', '.delrec', function () {
                 let id = $(this).parents('tr').data('id');
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: "This Content Will be Deleted!",
+                    text: "This Syllabus Will be Deleted!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -356,7 +270,7 @@
                     confirmButtonText: 'Yes, Proceed!',
                     showLoaderOnConfirm: true,
                     preConfirm: () => {
-                        return fetch('dhamma/deactivate-content', {
+                        return fetch('syllabus/deactivate-syllabus', {
                             method: 'POST',
                             body: new URLSearchParams({
                                 id: id
@@ -377,19 +291,29 @@
                         if (result.value.status !== 200) {
                             Swal.fire('Error!', result.value.msg, 'error');
                         } else {
-                            Swal.fire('Successfull!', 'Content has been Deactivated !', 'success');
+                            Swal.fire('Successfull!', 'Syllabus has been Deactivated !', 'success');
                             dtable.ajax.reload();
                             $('#formSection').hide();
                             $('#tableSection').fadeIn();
                         }
                     }
+                });
+            });
+
+
+
+            $(document).ready(function () {
+                // Add click event handler to both close buttons
+                $(' .close').click(function () {
+                    $('#formSection').hide();
+                    $('#tableSection').fadeIn();
                 });
             });
             $(document).on('click', '.rerec', function () {
                 let id = $(this).parents('tr').data('id');
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: "Content Will be Activated!",
+                    text: "Syllabus Will be Activated!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -397,7 +321,7 @@
                     confirmButtonText: 'Yes, Proceed!',
                     showLoaderOnConfirm: true,
                     preConfirm: () => {
-                        return fetch('dhamma/reactivate-content', {
+                        return fetch('syllabus/reactivate-syllabus', {
                             method: 'POST',
                             body: new URLSearchParams({
                                 id: id
@@ -418,7 +342,7 @@
                         if (result.value.status !== 200) {
                             Swal.fire('Error!', result.value.msg, 'error');
                         } else {
-                            Swal.fire('Successfull!', 'Content has been Activated !', 'success');
+                            Swal.fire('Successfull!', 'Syllabus has been Activated !', 'success');
                             dtable.ajax.reload();
                             $('#formSection').hide();
                             $('#tableSection').fadeIn();
@@ -426,20 +350,18 @@
                     }
                 });
             });
-            $('#addContentBtn').click(function () {
+            // Add an event listener to the "Add Syllabus" button
+            $('#addSyllabusBtn').click(function () {
+                clearForm(); // Clear the form fields
                 $('#saveBtn').data('mode', 'save');
                 $('#saveBtn').html('<i class="icon feather icon-save"></i>Save');
-                clearForms();
                 $('#tableSection').hide();
                 $('#formSection').fadeIn();
             });
-            $('.cls-card').click(function () {
-                $('#formSection').hide();
-                $('#tableSection').fadeIn();
-            });
+
+            // Add a function to clear the form fields
             function clearForm() {
                 $('#formSection').find('input[type!=search]').val('');
-                $('#formSection').find('textarea').val('');
                 $('#formSection').find('select').each(function () {
                     if ($(this).data('select')) {
                         if ($(this).data('select').ajax) {
@@ -450,199 +372,103 @@
                 });
             }
 
-            var deleted = [];
 
-            function clearForms() {
-                // Clear Unit Name input
-                deleted = [];
-                document.getElementById('heading').value = '';
-
-                // Clear table rows
-                var tableBody = document.querySelector('#tbladdAtt tbody');
-                tableBody.innerHTML = '';
-            }
             $(document).on('click', '.editrec', function () {
                 loadDiv($('#tableSection'));
                 let id = $(this).parents('tr').data('id');
-
-                // Fetch heading and attachment details
-                fetch('dhamma/content-details/' + id)
+                fetch('syllabus/details/' + id)
                         .then(resp => resp.json())
                         .then((resp) => {
-                            let content = resp.data.content;
-                            $('#heading').val(content.heading);
-                            let attachments = resp.data.videos;
+                            let data = resp.data;
+                            $('#grade').val(data.grade)
 
-
-                            // Clear existing rows in the attachment table
-                            $('#tbladdAtt tbody').empty();
-
-                            // Populate the attachment table with fetched data
-                            attachments.forEach((attachment) => {
-                                // Get the table body
-                                var tableBody = document.querySelector('#tbladdAtt tbody');
-
-                                // Create a new row
-                                var newRow = tableBody.insertRow();
-
-                                // Create cells in the new row
-                                var fileNameCell = newRow.insertCell(0);
-                                var fileCell = newRow.insertCell(1);
-                                var actionCell = newRow.insertCell(2);
-
-                                // Set the text content of the cells with the fetched values
-                                fileNameCell.textContent = attachment.name;
-
-                                var fileLink = document.createElement('a');
-                                fileLink.href = 'https://www.youtube.com/embed/' + attachment.link;  // Set the link to the file using the path from attachment.att_path
-                                fileLink.target = '_blank';  // Open the link in a new tab
-                                fileLink.textContent = 'View Video';
-                                fileCell.appendChild(fileLink);
-
-                                // Create a delete button in the action cell
-                                var deleteButton = document.createElement('button');
-                                deleteButton.classList.add('btn', 'btn-sm', 'btn-danger');
-                                deleteButton.textContent = 'Delete';
-
-                                // Add a click event listener to the delete button
-                                let videoId = attachment.id;
-                                deleteButton.addEventListener('click', function () {
-
-                                    deleted.push(videoId + "");
-
-                                    // Remove the row when the delete button is clicked
-                                    tableBody.removeChild(newRow);
-                                });
-
-                                // Append the delete button to the action cell
-                                actionCell.appendChild(deleteButton);
-                            });
-
-                            // Show the form section
-                            $('#saveBtn').data('mode', 'update');
+                            $('#saveBtn').data('mode', 'update'); // Set the mode to 'update'
                             $('#saveBtn').data('id', id);
-                            $('#saveBtn').html('<i class="icon feather icon-save"></i>Update');
+                            $('#saveBtn').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
                             $('#formSection').fadeIn();
                             $('#tableSection').hide();
                             finishLoadDiv($('#tableSection'));
-
                         });
             });
 
-
-
-            function handleAttachmentDeletion() {
-                let deleteIds = [];
-
-                $('#tbladdAtt').on('click', '.btn-danger', function () {
-                    let deleteRowId = $(this).closest('tr').attr('id');
-                    deleteIds.push(deleteRowId);
-                    $(this).closest('tr').remove();
-                });
-
-                return deleteIds;
-            }
-
             document.getElementById('saveBtn').addEventListener('click', function () {
-                let mode = $('#saveBtn').data('mode');
+                if ($('#grade').val().trim() === '') {
+                    Swal.fire("Empty Heading!", "Please Enter a Valid Heading!", "warning");
+                    return;
+                }
+                let mode = $('#saveBtn').data('mode'); // Get the mode (save or update) from the button's data
+
                 if (mode === 'save') {
-                    let heading = document.getElementById('heading').value;
-
-                    let tableRows = document.querySelectorAll('#tbladdAtt tbody tr');
-                    let attachmentData = [];
-                    let formData = {};
-
-                    let i = 1;
-                    tableRows.forEach((row, index) => {
-                        let fileName = row.querySelector('input[name="fileName"]').value;
-                        let fileLink = row.querySelector('input[name="fileLink"]').value;
-
-                        attachmentData.push({
-                            name: fileName,
-                            link: fileLink
-                        });
-                    });
-                    let desclist = JSON.stringify(attachmentData);
-
-                    formData.desclist = desclist;
-                    formData.heading = heading;
-
-
-
-                    fetch('dhamma/save-attachment', {
+                    // Handle the 'save' action
+                    let fd = new FormData();
+                    let file = document.getElementById('file').files;
+                    let grade = document.getElementById('grade').value;
+                    fd.append('grade', grade);
+                    for (var i = 0; i < file.length; i++) {
+                        fd.append('file', file[i]);
+                    }
+                    fetch('syllabus/save', {
                         method: 'POST',
-                        body: new URLSearchParams(formData)
+                        body: fd
                     }).then(response => {
                         if (!response.ok) {
                             throw new Error(response.statusText);
                         } else {
-                            Swal.fire('Successful!', 'Content has been successfully saved', 'success');
-                            clearForms();
+                            Swal.fire('Successful!', 'Syllabus has been successfully saved', 'success');
+                            clearForm();
                             $('#formSection').hide();
                             $('#tableSection').fadeIn();
-                            $('#navTab').fadeIn();
                             dtable.ajax.reload();
-                            clearForms();
                         }
                         return response.json();
                     });
                 } else if (mode === 'update') {
-                    let heading = document.getElementById('heading').value;
+                    // Handle the 'update' action
                     let id = $('#saveBtn').data('id');
+                    let grade = $('#grade').val();
+                    let fileInput = document.getElementById('file');
+                    let files = fileInput.files;
 
-                    let deleteIds = handleAttachmentDeletion();
-                    let tableRows = document.querySelectorAll('#tbladdAtt tbody tr');
-                    let attachmentData = [];
+                    let formData = new FormData();
+                    formData.append('id', id);
+                    formData.append('grade', grade);
 
-                    let formData = {};
+                    for (let i = 0; i < files.length; i++) {
+                        formData.append('file', files[i]);
+                    }
 
-                    tableRows.forEach((row, index) => {
-                        let fileNameInput = row.querySelector('input[name="fileName"]');
-                        let fileLinkInput = row.querySelector('input[name="fileLink"]');
-
-                        if (fileNameInput && fileLinkInput) {
-                            let fileName = fileNameInput.value;
-                            let fileLink = fileLinkInput.value;
-
-                            attachmentData.push({
-                                name: fileName,
-                                link: fileLink
-
-                            });
+                    $.ajax({
+                        url: 'syllabus/update', // Replace with the actual update endpoint
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            if (response.status === 200) {
+                                Swal.fire('Successful!', 'Syllabus details updated successfully', 'success');
+                                clearForm();
+                                $('#formSection').hide();
+                                $('#tableSection').fadeIn();
+                                dtable.ajax.reload();
+                            } else {
+                                Swal.fire('Successful!', 'Syllabus details updated successfully', 'success');
+                                clearForm();
+                                $('#formSection').hide();
+                                $('#tableSection').fadeIn();
+                                dtable.ajax.reload();
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(xhr);
+                            console.log(status);
+                            console.log(error);
+                            Swal.fire('Error!', 'Failed to update Syllabus details', 'error');
                         }
-                    });
-
-                    let desclist = JSON.stringify(attachmentData);
-
-                    formData.desclist = desclist;
-                    formData.id = id;
-                    formData.heading = heading;
-                    formData.deleteIds = JSON.stringify(deleted);
-
-                    fetch('dhamma/update-attachment', {
-                        method: 'POST',
-                        body: new URLSearchParams(formData)
-                    }).then(response => {
-                        if (!response.ok) {
-                            throw new Error(response.statusText);
-                        } else {
-                            Swal.fire('Successful!', 'Unit details updated successfully', 'success');
-                            clearForms();
-                            $('#formSection').hide();
-                            $('#tableSection').fadeIn();
-                            $('#navTab').fadeIn();
-                            dtable.ajax.reload();
-                        }
-                        return response.json();
-                    }).catch(error => {
-                        console.error('Error updating unit details:', error);
-                        Swal.fire('Error!', 'Failed to update Unit details', 'error');
                     });
                 }
-
-
-
             });
+
+
 
         </script>
     </body>

@@ -29,6 +29,8 @@ import org.springframework.web.multipart.MultipartFile;
 import static org.springframework.web.servlet.function.RequestPredicates.param;
 import static org.springframework.web.servlet.function.RequestPredicates.path;
 import bvs.org.repo.DhammaContentRepo;
+import java.util.HashMap;
+import java.util.Optional;
 
 /**
  *
@@ -52,9 +54,13 @@ public class DhammaVideoService {
 
     }
 
-    public DhammaContent getDhammaContent(Integer id) throws Exception {
-        DhammaContent not = conRepo.findById(id).get();
-        return not;
+    public Object getDhammaContent(Integer id) throws Exception {
+        DhammaContent content = conRepo.findById(id).get();
+        List<DhammaVideo> videos = videoRepo.findByContentAndStatus(id, "active");
+        Map<String, Object> data = new HashMap<>();
+        data.put("content", content);
+        data.put("videos", videos);
+        return data;
     }
 
     private final ObjectMapper mapper = new ObjectMapper();
@@ -122,92 +128,68 @@ public class DhammaVideoService {
         return conRepo.save(system);
     }
 
-//    public DhammaVideo updateAttachment(Integer id, String name, String course, String desclist, Map<String, MultipartFile> files) {
-//        try {
-//            DhammaVideo system = videoRepo.findById(id).orElseThrow(() -> new Exception("DhammaVideo not found"));
-//            system.setName(name);
-//
-//            if (files != null) {
-//                List<DhammaContent> existingAttachments = (List<DhammaContent>) conRepo.findByDhammaVideo(system.getId());
-//
-//                // Mark existing attachments for deletion
-//                for (DhammaContent existingAttachment : existingAttachments) {
-//                    // Check if the attachment ID is present in the desclist to deactivate only the specified ones
-//                    if (containsAttachmentId(desclist, existingAttachment.getId())) {
-//                        existingAttachment.setStatus("deactivate");
-//                        conRepo.save(existingAttachment);
-//                    }
-//                }
-//
-//                String directoryPath = "E-Learning\\Course\\Attachments";
-//                File directory = new File(directoryPath);
-//                if (!directory.exists()) {
-//                    if (directory.mkdirs()) {
-//                        System.out.println("Directory created successfully");
-//                    } else {
-//                        throw new Exception("Failed to create directory");
-//                    }
-//                }
-//
-//                JsonNode fileList = mapper.readTree(desclist);
-//                for (int i = 0; i < fileList.size(); i++) {
-//                    JsonNode fileItem = fileList.get(i);
-//
-//                    // Extract file information from the JSON
-//                    String fileName = fileItem.get("fileName").asText();
-//                    String fileIdentifier = fileItem.get("file").asText();
-//
-//                    DhammaContent attachment = new DhammaContent();
-//                    attachment.setDhammaVideo(system.getId());
-//                    attachment.setFile_name(fileName);
-//
-//                    // Check if file is provided
-//                    if (!fileIdentifier.equals("deactivate")) {
-//                        // Save the new or updated attachment
-//                        String[] split = fileIdentifier.split("\\.");
-//                        File des = new File(directory, +system.getId() + "_" + attachment.getId() + "." + split[split.length - 1]);
-//                        System.out.println(attachment.getId());
-//                        MultipartFile file = files.get(fileIdentifier);
-//
-//                        // Check if file is not null before transferring
-//                        if (file != null) {
-//                            // Log the file transfer details
-//                            System.out.println("Transferring file: " + file.getOriginalFilename() + " to " + des.getAbsolutePath());
-//
-//                            // Transfer the file
-//                            file.transferTo(Path.of(des.getAbsolutePath()));
-//                            file.transferTo(des.toPath());
-//                        }
-//
-//                        attachment.setAtt_path(des.getName());
-//
-//                        // Set the status to "active" for new attachments
-//                        attachment.setStatus("active");
-//
-//                        conRepo.save(attachment);
-//                    }
-//                }
-//            }
-//
-//            return videoRepo.save(system);
-//        } catch (Exception e) {
-//            // Log the exception or handle it appropriately
-//            e.printStackTrace();
-//            throw new RuntimeException("Failed to update unit with attachments", e);
-//        }
-//    }
-//
-//    private boolean containsAttachmentId(String desclist, Integer attachmentId) throws JsonProcessingException {
-//        JsonNode fileList = mapper.readTree(desclist);
-//        for (int i = 0; i < fileList.size(); i++) {
-//            JsonNode fileItem = fileList.get(i);
-//            Integer fileId = fileItem.get("fileId").asInt();
-//            if (fileId.equals(attachmentId)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    public DhammaContent updateAttachment(Integer id, String heading, String desclist, String deleteIds) {
+        try {
+            DhammaContent system = conRepo.findById(id).orElseThrow(() -> new Exception("DhammaVideo not found"));
+            system.setHeading(heading);
+
+            if (deleteIds != null) {
+
+                JsonNode toBeDeleted = mapper.readTree(deleteIds);
+                for (JsonNode jsonNode : toBeDeleted) {
+                    Optional<DhammaVideo> optionalAttachment = (Optional<DhammaVideo>) videoRepo.findById(Integer.parseInt(jsonNode.asText()));
+                    if (optionalAttachment.isPresent()) {
+                        DhammaVideo attachmentToDelete = optionalAttachment.get();
+                        attachmentToDelete.setStatus("deactivate");
+                        videoRepo.save(attachmentToDelete);
+                    } else {
+                        // Handle case where attachment with given ID is not found
+                        throw new Exception("Attachment with ID " + jsonNode.asText() + " not found");
+                    }
+                }
+            }
+
+            if (desclist != null && !desclist.isEmpty()) {
+                // Parse the description list string to JSON
+                JsonNode fileList = mapper.readTree(desclist);
+
+                // Iterate over each item in the description list
+                for (int i = 0; i < fileList.size(); i++) {
+                    JsonNode fileItem = fileList.get(i);
+
+                    // Extract file information from JSON
+                    String fileName = fileItem.get("name").asText();
+                    String fileLink = fileItem.get("link").asText();
+
+                    DhammaVideo attachment = new DhammaVideo();
+                    attachment.setContent(system.getId());
+                    attachment.setName(fileName);
+                    attachment.setLink(fileLink);
+
+                    // Save the new or updated attachment
+                    attachment.setStatus("active");
+                    videoRepo.save(attachment);
+                }
+            }
+
+            return conRepo.save(system);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to update unit with attachments", e);
+        }
+    }
+
+    private boolean containsAttachmentId(String desclist, Integer attachmentId) throws JsonProcessingException {
+        JsonNode fileList = mapper.readTree(desclist);
+        for (int i = 0; i < fileList.size(); i++) {
+            JsonNode fileItem = fileList.get(i);
+            Integer fileId = fileItem.get("fileId").asInt();
+            if (fileId.equals(attachmentId)) {
+                return true;
+            }
+        }
+        return false;
+    }
 //    private boolean containsAttachmentId(String desclist, Integer attachmentId) throws JsonProcessingException {
 //        try {
 //            JsonNode fileList = mapper.readTree(desclist);

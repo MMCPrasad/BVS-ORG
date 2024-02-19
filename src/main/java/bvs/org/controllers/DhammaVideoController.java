@@ -27,11 +27,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import bvs.org.model.DhammaContent;
 import bvs.org.model.DhammaVideo;
 import bvs.org.service.DhammaVideoService;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/dhamma")
@@ -89,19 +89,6 @@ public class DhammaVideoController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
-//    @PostMapping("/deactivate-news")
-//    public ResponseEntity<CommonResponse> deactivateAttatchments(@RequestParam Integer id) throws Exception {
-//        service.deactivateAttatchments(id);
-//        CommonResponse response = new CommonResponse("Success!", 200);
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
-//
-//    @PostMapping("/reactivate-news")
-//    public ResponseEntity<CommonResponse> reactivateAttatchments(@RequestParam Integer id) throws Exception {
-//        service.reactivateAttatchments(id);
-//        CommonResponse response = new CommonResponse("Success!", 200);
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
 
     @PostMapping("/save-attachment")
     @ResponseBody
@@ -112,36 +99,13 @@ public class DhammaVideoController {
         return service.saveAttachment(heading, desclist);
     }
 
-//    @PostMapping("/update-attachment")
-//    @ResponseBody
-//    public DhammaContent updateAttachment(MultipartHttpServletRequest req) throws Exception {
-//        Integer id = Integer.parseInt(req.getParameter("id"));
-//        String unitName = req.getParameter("name");
-//        String link = req.getParameter("link");
-//        String desclist = req.getParameter("desclist");
-//        Map<String, MultipartFile> files = req.getFileMap();
-//        return service.updateAttachment(id, unitName, course, desclist, files);
-//    }
-    @GetMapping("/path/attachment/{name}")
+    @PostMapping("/update-attachment")
     @ResponseBody
-    public void viewAttachment(@PathVariable String name, HttpServletResponse resp) throws IOException {
-
-        File file = new File("E-Learning\\Course\\Attachments" + name);
-
-        if (!file.exists()) {
-            resp.sendError(404, "file not found");
-            return;
-        }
-
-        OutputStream out = resp.getOutputStream();
-        FileInputStream in = new FileInputStream(file);
-        byte[] buffer = new byte[4096];
-        int length;
-        while ((length = in.read(buffer)) > 0) {
-            out.write(buffer, 0, length);
-        }
-        in.close();
-        out.flush();
+    public DhammaContent updateAttachment(String id, String heading, String desclist, @RequestParam(value = "deleteIds", required = false) String deleteIds) throws Exception {
+        Integer idd = Integer.parseInt(id);
+        // Pass deleteIds to the service method
+        System.out.println(deleteIds);
+        return service.updateAttachment(idd, heading, desclist, deleteIds);
 
     }
 

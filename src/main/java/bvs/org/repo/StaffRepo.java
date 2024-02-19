@@ -4,9 +4,10 @@
  */
 package bvs.org.repo;
 
-import bvs.org.model.DhammaVideo;
-import java.util.List;
+import bvs.org.model.Staff;
+import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,13 +15,7 @@ import org.springframework.stereotype.Repository;
  * @author cpm.999cc
  */
 @Repository
-public interface DhammaVideoRepo extends CrudRepository<DhammaVideo, Integer> {
+public interface StaffRepo extends CrudRepository<Staff, Integer> {
 
-    Iterable<DhammaVideo> findByStatus(String status);
-
-    Iterable<DhammaVideo> findByContent(Integer id);
-
-    List<DhammaVideo> findByContentAndStatus(Integer id, String status);
-
-    public Object findById(String deleteId);
+    Iterable<Staff> findByStatus(String status);
 }

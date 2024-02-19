@@ -57,11 +57,11 @@
             }
 
             .card-video {
-                width: 60rem;
+                width: 50rem;
                 background-color: #dec5b8;
                 border-radius: 15px;
-                margin-top: 2rem;
-                padding: 1rem;
+                margin-top: 1rem;
+                padding: 0.5rem;
             }
 
             .container-c {
@@ -73,18 +73,18 @@
     <body>
         <%@include file="../jspf/navbar.jspf" %>
 
-        <div class="title-bg">
-            <div class="container-s">
-                <div class="container_12">
-                    <div class="grid_12">
-                        <h1 class="title">Dhamma Videos</h1>
+
+        <div class="container-v " id="sysss" >
+            <div class="title-bg">
+                <div class="container-s">
+                    <div class="container_12">
+                        <div class="grid_12">
+                            <h1 class="title">Dhamma Videos</h1>
+                        </div>
                     </div>
                 </div>
+
             </div>
-
-        </div>
-        <div class="container-v " id="sysss" >
-
         </div>
 
         <div class="container-c" id="container-c">
@@ -118,15 +118,17 @@
                     .then(data => {
                         console.log(data);
 
+
+
                         for (var i = 0; i < data.length; i++) {
                             var card = '<div class="row justify-content-center mb-3" style="margin-top: 1rem;">' +
                                     '<div class="card-video">' +
                                     '<div class="row">' +
                                     '<div class="col-3">' +
-                                    '<img src="assets/img/btn.gif" style="width: 50%" class="card-img" alt="...">' +
+                                    '<img src="assets/img/btn.gif" style="width: 60%" class="card-img" alt="...">' +
                                     '</div>' +
                                     '<div class="col-9">' +
-                                    '<h1>' + data[i].heading + '</h1>' +
+                                    '<h2>' + data[i].heading + '</h2>' +
                                     '<button type="button" class="btn btn-outline-primary more-videos-btn" data-video-id="' + data[i].id + '">More Videos</button>' +
                                     '</div>' +
                                     '</div>' +
@@ -146,25 +148,53 @@
                 var videoId = $(this).data('video-id');
                 fetch('dhamma/' + videoId)
                         .then(res => res.json())
+                        .then(res => res.data)
                         .then(data => {
+                            console.log("Data :", data);
 
                             $('.container-c .row').empty();
 
 
-                            var card = '<div class="col-6">' +
-                                    '<div class="card border-secondary">' +
-                                    '<div class="card-header">' +
-                                    '<h5>' + data.name + '</h5>' +
-                                    '</div>' +
-                                    '<div class="card-body text-secondary">' +
-                                    '<iframe width="560" height="315" src="' + data.link + '" frameborder="0" allowfullscreen></iframe>' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</div>';
+                            // Append the title background div
+                            var titleBg = $('.container-c .title-bg');
+                            if (titleBg.length === 0) {
+                                // If it doesn't exist, create and prepend it
+                                titleBg = $('<div class="title-bg">' +
+                                        '<div class="container-s">' +
+                                        '<div class="container_12">' +
+                                        '<div class="grid_12">' +
+                                        '<h1 class="title">' + data.content + '</h1>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>');
+                                $('.container-c').prepend(titleBg);
+                            }
+
+                            // Loop through the videos array
+                            for (var i = 0; i < data.videos.length; i++) {
+                                var video = data.videos[i];
+
+                                // Create the card HTML
+                                var card = '<div class="col-6" style="margin-top: 1rem;">' +
+                                        '<div class="card border-secondary">' +
+                                        '<div class="card-header">' +
+                                        '<h5>' + video.name + '</h5>' +
+                                        '</div>' +
+                                        '<div class="card-body text-secondary">' +
+                                        '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + video.link + '" frameborder="0" allowfullscreen></iframe>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>';
+
+                                $('.container-c .row').append(card);
+
+                            }
 
 
-                            $('.container-c .row').append(card);
+                            $('.container-c').show();
                         });
+
 
 
             });

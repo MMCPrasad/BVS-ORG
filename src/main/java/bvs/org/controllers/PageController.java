@@ -70,4 +70,24 @@ public class PageController {
         return "admin/add_dhamma_video";
     }
 
+    @GetMapping("/Admin-Staff")
+    public String staffAdd() {
+        return "admin/addStaff";
+    }
+
+    @GetMapping("/Staff")
+    public String staff() {
+        return "dhammaSchool/staff";
+    }
+
+    @GetMapping("/Classes")
+    public String classes() {
+        return "dhammaSchool/class";
+    }
+
+    @GetMapping("/Admin-Syllabus")
+    public String classesadd() {
+        return "admin/addsyllabus";
+    }
+
 }
