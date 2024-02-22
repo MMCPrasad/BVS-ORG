@@ -342,7 +342,7 @@
                 <a href="#forms" class="dropbtn">Forms</a>
                 <ol class="sub-menu">
                     <li class="menu-item"><a href="#">Membership Form</a></li>
-                    <li class="menu-item"><a href="#">Dana Request Form</a></li>
+                    <li class="menu-item"><a href="Dana-Request">Dana Request Form</a></li>
                     <li class="menu-item"><a href="#">Service Request Form</a></li>
                     <li class="menu-item"><a href="#">Sunday school SNACK Form</a></li>
                     <li class="menu-item"><a href="#">BVS Carpool Forms</a></li>
@@ -364,7 +364,7 @@
             <li class="menu-item">
                 <a href="#events" class="dropbtn">Schedule</a>
                 <ol class="sub-menu">
-                    <li class="menu-item"><a href="#">Dana Calendar</a></li>
+                    <li class="menu-item"><a href="Dana-Calender">Dana Calendar</a></li>
                     <li class="menu-item"><a href="#">Events Calendar</a></li>
                     <li class="menu-item"><a href="#">Special Events</a></li>
                 </ol>

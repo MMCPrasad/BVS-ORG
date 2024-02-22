@@ -90,4 +90,14 @@ public class PageController {
         return "admin/addsyllabus";
     }
 
+    @GetMapping("/Dana-Request")
+    public String danaReq() {
+        return "forms/dana_form";
+    }
+
+    @GetMapping("/Dana-Calender")
+    public String dana() {
+        return "schedule/dana_calendar";
+    }
+
 }
