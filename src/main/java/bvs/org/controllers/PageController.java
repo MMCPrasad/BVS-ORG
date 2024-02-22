@@ -100,4 +100,28 @@ public class PageController {
         return "schedule/dana_calendar";
     }
 
+    @GetMapping("/Membership")
+    public String member() {
+        return "forms/membership";
+    }
+
+    @GetMapping("/Project-Events")
+    public String project() {
+        return "communityEngagement/project_events";
+    }
+
+    @GetMapping("/Project-Garden")
+    public String projectGarden() {
+        return "communityEngagement/garden_project";
+    }
+
+    @GetMapping("/Event-Calender")
+    public String event() {
+        return "schedule/event_calendar";
+    }
+
+    @GetMapping("/School-Calender")
+    public String schoolCalendar() {
+        return "dhammaSchool/school_calendar";
+    }
 }

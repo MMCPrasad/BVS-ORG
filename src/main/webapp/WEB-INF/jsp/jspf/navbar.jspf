@@ -30,20 +30,10 @@
         background-color: #000000;
 
     }
-    a:focus {
-        outline: none;
-        position: relative;
-    }
-    a:after {
-        content: "";
-        background: #ffffff;
-        position: absolute;
-        bottom: 5px;
-        left: 15px;
-        height: 3px;
-        width: 0;
-        transition: 0.5s;
-        transition-delay: 0.2s;
+    .a{
+        text-decoration: none;
+        color: black;
+        font-size: 1.1rem;
     }
 
 
@@ -334,19 +324,19 @@
                 <ol class="sub-menu">
                     <li class="menu-item"><a href="Staff">Staff</a></li>
                     <li class="menu-item"><a href="Classes">Classes</a></li>
-                    <li class="menu-item"><a href="#="#">School Calendar</a></li>
+                    <li class="menu-item"><a href="School-Calender">School Calendar</a></li>
                 </ol>
             </li>
 
             <li class="menu-item">
                 <a href="#forms" class="dropbtn">Forms</a>
                 <ol class="sub-menu">
-                    <li class="menu-item"><a href="#">Membership Form</a></li>
+                    <li class="menu-item"><a href="Membership">Membership Form</a></li>
                     <li class="menu-item"><a href="Dana-Request">Dana Request Form</a></li>
                     <li class="menu-item"><a href="#">Service Request Form</a></li>
                     <li class="menu-item"><a href="#">Sunday school SNACK Form</a></li>
                     <li class="menu-item"><a href="#">BVS Carpool Forms</a></li>
-                    <li class="menu-item"><a href="#">PAP Form</a></li>
+                    <li class="menu-item"><a href="#" id="papFormLink">PAP Form</a></li>
                     <li class="menu-item"><a href="#">Katina 2023 - Kapruka Offerings</a></li>
                     <li class="menu-item"><a href="#">Katina Dansala Lunch Items</a></li>
                 </ol>
@@ -355,7 +345,7 @@
             <li class="menu-item">
                 <a href="#community-engagement" class="dropbtn">Community Engagement</a>
                 <ol class="sub-menu">
-                    <li class="menu-item"><a href="/projects-events">Projects & Events</a></li>
+                    <li class="menu-item"><a href="Project-Events">Projects & Events</a></li>
                     <li class="menu-item"><a href="/newsletters">Newsletters</a></li>
                     <li class="menu-item"><a href="/vegetable-ordering">Vegetable Ordering</a></li>
                 </ol>
@@ -365,7 +355,7 @@
                 <a href="#events" class="dropbtn">Schedule</a>
                 <ol class="sub-menu">
                     <li class="menu-item"><a href="Dana-Calender">Dana Calendar</a></li>
-                    <li class="menu-item"><a href="#">Events Calendar</a></li>
+                    <li class="menu-item"><a href="Event-Calender">Events Calendar</a></li>
                     <li class="menu-item"><a href="#">Special Events</a></li>
                 </ol>
             </li>
@@ -379,3 +369,9 @@
 
         </div>
     </nav>
+    <script>
+        document.getElementById("papFormLink").addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent default link behavior
+            window.open("assets/img/PreAuthorizedPayment Form.pdf", "_blank"); // Replace "path_to_your_file" with the actual URL or path to your file
+        });
+    </script>

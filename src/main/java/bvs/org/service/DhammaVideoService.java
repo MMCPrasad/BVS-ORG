@@ -93,7 +93,7 @@ public class DhammaVideoService {
 
     public DhammaAllDto getAttachment(Integer id) throws Exception {
         DhammaContent con = conRepo.findById(id).get();
-        Iterable<DhammaVideo> dhammaVideo = videoRepo.findByContent(id);
+        Iterable<DhammaVideo> dhammaVideo = videoRepo.findByContentAndStatus(id, "active");
 
         DhammaAllDto dto = new DhammaAllDto();
         dto.setVideos(dhammaVideo);

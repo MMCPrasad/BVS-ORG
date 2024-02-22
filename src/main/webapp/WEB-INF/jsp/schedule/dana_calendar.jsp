@@ -67,6 +67,7 @@
         </div>
         <div class="background-image"></div>
         <div class="para" >
+            <iframe src="https://calendar.google.com/calendar/embed?src=9c59283d3cb452d406c7682f8d5f53f96f367b193cc660d4404a052a55b33386%40group.calendar.google.com&ctz=Asia%2FColombo" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 
         </div>
 
