@@ -10,7 +10,7 @@
 
 
     .bg-light {
-        background-color: #6c4892!important;
+        background-color: #944004!important;
         font-family: Jost;
         font-size: 1.2rem;
         font-weight: bold;
@@ -68,7 +68,7 @@
     </button>
 
     <a class="navbar-brand" href="welfare">
-        <img src="files/images/fintrex-din-white1.png" width="150" height="60" class="d-inline-block align-top" alt="">
+        <img src="https://bvs.org/sites/default/files/logo_0.png" width="150" height="60" class="d-inline-block align-top" alt="">
 
     </a>
     <div class="navbar-container container-fluid">
@@ -77,7 +77,7 @@
 
             <div class="dropdown-primary dropdown">
                 <div class="dropdown-toggle" data-toggle="dropdown">
-                    <img width="30%" src="files/images/user.png" class="img-radius" alt="My Photo">
+
                     <span><%=session.getAttribute("username")%></span>
                     <i class="feather icon-chevron-down"></i>
                 </div>

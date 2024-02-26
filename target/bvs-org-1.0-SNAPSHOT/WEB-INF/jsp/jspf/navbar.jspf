@@ -330,15 +330,11 @@
 
             <li class="menu-item">
                 <a href="#forms" class="dropbtn">Forms</a>
-                <ol class="sub-menu">
+                <ol class="sub-menu" id="dynamicForms">
+                    <!-- Additional form items will be appended here dynamically -->
                     <li class="menu-item"><a href="Membership">Membership Form</a></li>
-                    <li class="menu-item"><a href="Dana-Request">Dana Request Form</a></li>
-                    <li class="menu-item"><a href="#">Service Request Form</a></li>
-                    <li class="menu-item"><a href="#">Sunday school SNACK Form</a></li>
-                    <li class="menu-item"><a href="#">BVS Carpool Forms</a></li>
-                    <li class="menu-item"><a href="#" id="papFormLink">PAP Form</a></li>
-                    <li class="menu-item"><a href="#">Katina 2023 - Kapruka Offerings</a></li>
-                    <li class="menu-item"><a href="#">Katina Dansala Lunch Items</a></li>
+                    <li class="menu-item"><a href="assets/img/PreAuthorizedPayment Form.pdf" target="_blank">PAP Form</a></li>
+
                 </ol>
             </li>
 
@@ -369,9 +365,38 @@
 
         </div>
     </nav>
+
     <script>
-        document.getElementById("papFormLink").addEventListener("click", function (event) {
-            event.preventDefault(); // Prevent default link behavior
-            window.open("assets/img/PreAuthorizedPayment Form.pdf", "_blank"); // Replace "path_to_your_file" with the actual URL or path to your file
-        });
+
+
+
+    </script>
+    <script>
+        fetch('form/details')
+                .then(response => response.json())
+                .then(data => {
+                    const dynamicForms = document.getElementById('dynamicForms');
+                    // Append each additional form item to the dynamicForms list
+                    data.forEach(form => {
+                        const li = document.createElement('li');
+                        li.className = 'menu-item';
+                        const a = document.createElement('a');
+                        a.href = 'Forms';
+                        a.textContent = form.name; // Assuming each form object has a 'name' property
+                        a.addEventListener('click', function (event) {
+                            event.preventDefault(); // Prevent default link behavior
+                            fetchFormDetails(form.id); // Fetch details when the item is clicked
+                        });
+                        li.appendChild(a);
+                        dynamicForms.appendChild(li);
+                    });
+                })
+                .catch(error => console.error('Error fetching additional forms:', error));
+
+        function fetchFormDetails(formId) {
+            // Redirect to the forms page
+            window.location.href = 'Forms?formId=' + formId;
+        }
+
+
     </script>

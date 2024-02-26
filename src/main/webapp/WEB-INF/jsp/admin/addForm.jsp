@@ -5,11 +5,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>BVS | Dhamma School Staff</title>
+        <title>BVS | Forms</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="shortcut icon" href="https://bvs.org/sites/all/themes/bluemasters/favicon.ico" type="image/vnd.microsoft.icon" />
 
         <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
         <style>
@@ -102,7 +103,7 @@
                             <div class="container-s">
                                 <div class="container_12">
                                     <div class="grid_12">
-                                        <h1 class="title">Dhamma School Staff - Admin</h1>
+                                        <h1 class="title">BVS - Forms</h1>
                                     </div>
                                 </div> 
                             </div>
@@ -116,7 +117,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Grade</th>                                             
+                                                <th>Form Name</th>                                             
                                                 <th style="width:1px;">Status</th>
                                                 <th style="width:1px;">Action</th>
                                             </tr>
@@ -129,7 +130,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="text-right">
-                                    <button id="addGradeBtn" class="btn btn-sm waves-effect waves-light btn-danger"><i class="icon feather icon-plus"></i>Add Grade</button>
+                                    <button id="addFormBtn" class="btn btn-sm waves-effect waves-light btn-danger"><i class="icon feather icon-plus"></i>Add Form</button>
                                 </div>
                             </div>
                         </div>
@@ -150,22 +151,17 @@
 
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group" style="width: 75rem">
-                                        <label for="grade">Please Enter the Grade Here<span class="text-danger">*</span></label>
-                                        <input id="grade" type="text" name="grade" class="form-control"  required autocomplete="off">
+                                        <label for="name">Please Enter the Form Name Here<span class="text-danger">*</span></label>
+                                        <input id="name" type="text" name="name" class="form-control"  required autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group" style="width: 75rem">
-                                        <label for="teacher">Please Enter the Teacher's Name Here<span class="text-danger">*</span></label>
-                                        <input id="teacher" type="text" name="teacher" class="form-control"  required autocomplete="off">
+                                        <label for="iframe">Please Enter the I FRAME link Here (Google form Iframe Link)<span class="text-danger">*</span></label>
+                                        <input id="iframe" type="text" name="iframe" class="form-control"  required autocomplete="off">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-12">
-                                    <div class="form-group" style="width: 75rem">
-                                        <label for="sub_teacher">Please Enter the Substitute Teacher's Name Here<span class="text-danger">*</span></label>
-                                        <input id="sub_teacher" type="text" name="sub_teacher" class="form-control"  required autocomplete="off">
-                                    </div>
-                                </div>
+
                                 <div class="col-lg-6 col-12">
                                     <div class="form-group" style="width: 75rem">
 
@@ -211,7 +207,7 @@
                 "searchHighlight": true,
                 "searchDelay": 350,
                 "ajax": {
-                    "url": "staff/staffs",
+                    "url": "form/forms",
                     "contentType": "application/json",
                     "type": "POST",
                     "data": function (d) {
@@ -224,7 +220,7 @@
                 },
                 "columns": [
                     {"data": "id", className: "text-right", "visible": false},
-                    {"data": "grade"},
+                    {"data": "name"},
                     {"data": "status"}
                 ], "language": {
                     'loadingRecords': '&nbsp;',
@@ -257,13 +253,12 @@
 
                 loadDiv($('#tableSection'));
                 let id = $(this).parents('tr').data('id');
-                fetch('staff/update-staff/' + id).then(resp => resp.json())
+                fetch('form/update-form/' + id).then(resp => resp.json())
                         .then((data) => {
                             clearForm();
 
-                            $('#grade').val(data.grade);
-                            $('#teacher').val(data.teacher);
-                            $('#sub_teacher').val(data.sub_teacher);
+                            $('#name').val(data.name);
+                            $('#iframe').val(data.iframe);
                             $('#saveBtn').data('mode', 'update');
                             $('#saveBtn').html('<i class="icon feather icon-save"></i>Update');
                             $('#saveBtn').data('id', id);
@@ -276,7 +271,7 @@
                 let id = $(this).parents('tr').data('id');
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: "This Grade Will be Deleted!",
+                    text: "This Form Will be Deleted!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -284,7 +279,7 @@
                     confirmButtonText: 'Yes, Proceed!',
                     showLoaderOnConfirm: true,
                     preConfirm: () => {
-                        return fetch('staff/deactivate-staff', {
+                        return fetch('form/deactivate-form', {
                             method: 'POST',
                             body: new URLSearchParams({
                                 id: id
@@ -305,7 +300,7 @@
                         if (result.value.status !== 200) {
                             Swal.fire('Error!', result.value.msg, 'error');
                         } else {
-                            Swal.fire('Successfull!', 'Grade has been Deactivated !', 'success');
+                            Swal.fire('Successfull!', 'Form has been Deactivated !', 'success');
                             dtable.ajax.reload();
                             $('#formSection').hide();
                             $('#tableSection').fadeIn();
@@ -317,7 +312,7 @@
                 let id = $(this).parents('tr').data('id');
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: "Grade Will be Activated!",
+                    text: "Form Will be Activated!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -325,7 +320,7 @@
                     confirmButtonText: 'Yes, Proceed!',
                     showLoaderOnConfirm: true,
                     preConfirm: () => {
-                        return fetch('staff/reactivate-staff', {
+                        return fetch('form/reactivate-form', {
                             method: 'POST',
                             body: new URLSearchParams({
                                 id: id
@@ -346,7 +341,7 @@
                         if (result.value.status !== 200) {
                             Swal.fire('Error!', result.value.msg, 'error');
                         } else {
-                            Swal.fire('Successfull!', 'Grade has been Activated !', 'success');
+                            Swal.fire('Successfull!', 'Form has been Activated !', 'success');
                             dtable.ajax.reload();
                             $('#formSection').hide();
                             $('#tableSection').fadeIn();
@@ -354,7 +349,7 @@
                     }
                 });
             });
-            $('#addGradeBtn').click(function () {
+            $('#addFormBtn').click(function () {
                 $('#saveBtn').data('mode', 'save');
                 $('#saveBtn').html('<i class="icon feather icon-save"></i>Save');
                 clearForm();
@@ -386,19 +381,18 @@
 
             $('#saveBtn').click(function () {
 
-                return fetch((($('#saveBtn').data('mode') === 'save') ? 'staff/save-staff' : 'staff/update-staff'), {
+                return fetch((($('#saveBtn').data('mode') === 'save') ? 'form/save-form' : 'form/update-form'), {
                     method: 'POST',
                     body: new URLSearchParams({
                         id: $('#saveBtn').data('id'),
-                        grade: document.getElementById('grade').value,
-                        teacher: document.getElementById('teacher').value,
-                        sub_teacher: document.getElementById('sub_teacher').value,
+                        name: document.getElementById('name').value,
+                        iframe: document.getElementById('iframe').value,
                     })
                 }).then(response => {
                     if (!response.ok) {
                         throw new Error(response.statusText);
                     } else {
-                        Swal.fire('Successfull!', 'Grade has been successfully saved');
+                        Swal.fire('Successfull!', 'Form has been successfully saved');
                         clearForm();
                         $('#formSection').hide();
                         $('#tableSection').fadeIn();

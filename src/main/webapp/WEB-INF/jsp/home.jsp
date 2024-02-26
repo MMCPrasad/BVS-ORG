@@ -22,11 +22,7 @@
                 text-decoration: none;
 
             }
-            body {
-                font-family: 'Roboto Slab', serif;
-                font-size: 16px;
-                color: #333;
-            }
+
 
             .container_12 {
                 max-width: 1282px;

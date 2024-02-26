@@ -38,9 +38,8 @@ public class DbConfig extends AbstractJdbcConfiguration {
         dataSource.setUsername("root");
         dataSource.setPassword("1234");
 
-//        dataSource.setPassword("Mis@-123");
+//        dataSource.setPassword("Sol@Acc_DB2023");
 //      
-//        dataSource.setPassword("Test@-123");
         return dataSource;
     }
 

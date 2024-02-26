@@ -124,4 +124,24 @@ public class PageController {
     public String schoolCalendar() {
         return "dhammaSchool/school_calendar";
     }
+
+    @GetMapping("/bvsAdmin-Login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/Admincontrol")
+    public String admin() {
+        return "admincontrol";
+    }
+
+    @GetMapping("/Admin-Form")
+    public String form() {
+        return "admin/addForm";
+    }
+
+    @GetMapping("/Forms")
+    public String formView() {
+        return "forms/formView";
+    }
 }
