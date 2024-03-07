@@ -202,7 +202,7 @@ background: rgba(0, 0, 0, 0.7);
     <img src="assets/img/garden_project.jpg" alt="Slide 1">
     <div class="slider-item-caption">
         <h3>BVS Property Beautifying and Garden Enhancement Project</h3><br>
-                                                      <h6 style="display:inline;">You can book your vegitable plot &nbsp;</h6><h5 style="display:inline;color:red"> NOW</h5>
+                                                      <h6 style="display:inline;">You can book your vegetable plot &nbsp;</h6><h5 style="display:inline;color:red"> NOW</h5>
                                                       <br><p style="margin-top:20px;"><a class="readmore" href="/garden-Project">Read More</a></p>
 						</div>
     
