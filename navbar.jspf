@@ -1,5 +1,0 @@
- .menu > ol > li:hover .sub-menu,
-.menu > ol > li:focus .sub-menu,
-.menu > ol > li:focus-within .sub-menu {
-    max-height: 500px;
-}
