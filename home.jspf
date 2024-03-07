@@ -92,6 +92,7 @@
 
             #banner {
                 margin-top:30px;
+                
 
             }
 
@@ -306,7 +307,7 @@ background: rgba(0, 0, 0, 0.7);
                     <div class="grid_6 alpha omega">
                         <div class="column-fix">
                             <!-- Row 1 (Moved from Row 3) -->
-                            <div class="home-block-area">
+                            <div class="home-block-area" style="margin-top:0">
                                 <div class="region region-home-area-2">
                                     <div id="block-block-13" class="block block-block">
                                         <div class="content">
